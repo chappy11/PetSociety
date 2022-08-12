@@ -1,14 +1,16 @@
 import styled from 'styled-components';
+import {color} from '../../themes/Colors';
 
 export const Container = styled.div`
-    background-color:#9EC4C5;
-    position:fix;
+    background-color:${color.color2};
+    position:absolute;
     top:0;
+    width:100vw;
     z-index:2;
 `;
 
 export const Brand = styled.h2`
-    color:white;
+    color:${color.color4};
 `;
 
 export const Wrapper = styled.div`
@@ -40,12 +42,12 @@ export const AccountContainer = styled.div`
 
 export const Link = styled.a`
     text-decoration:none;
-    color:white;
+    color:${color.color4};
     margin:0px 7px;
     cursor:pointer;
 
     &:hover{
-        color:#7D7474;
+        color:#fefefe;
     }
 `;
 

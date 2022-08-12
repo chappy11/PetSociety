@@ -1,11 +1,14 @@
 import React from 'react'
+import { Navigation } from '../../components';
+import Header from './Header';
 import * as S from './style';
 
 export default function Home(){
     
     return(
-        <S.Header>
-            <p>Hello world</p>
-        </S.Header>
+        <div >
+            <Navigation/>
+            <Header/>
+        </div>
     )
 }

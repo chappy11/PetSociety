@@ -19,7 +19,7 @@ export default function Navigation(){
                     ))}
                 </S.NavigationList>
                 <S.AccountContainer>
-                    <S.Link>Register</S.Link>
+                    <S.Link href='/register' >Register</S.Link>
                     <SizeBox width={5}/>
                     <S.Text>/</S.Text>
                     <SizeBox width={5}/>
