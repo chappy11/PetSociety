@@ -1,34 +1,15 @@
-import React, { useState } from "react"
-import { Container, Form, Row, Col, Button, Stack } from "react-bootstrap"
+import React from "react"
+import { Container, Col, Row, Button } from "react-bootstrap"
 import { SizeBox, TextInput } from "../../components"
-import swal from "sweetalert"
 import Header from "./Header"
-import * as S from "./style"
-export default function Register() {
-  const [params, setParams] = useState({
-    profile_pic: "",
-    username: "",
-    password: "",
-    firstname: "",
-    middlename: "",
-    lastname: "",
-    gender: "",
-    contact: "",
-    birthdate: "",
-    address: "",
-  })
-
-  const handleClick = () => {
-    swal("Successfully", "You Have successfully Login", "success")
-  }
-
+export default function RegisterShopOwner() {
   return (
     <>
       <Header />
       <SizeBox height={20} />
       <Container>
         <Row>
-          <Col xs={3}>
+          <Col xs={4}>
             <input type="file" />
           </Col>
           <Col>
@@ -68,67 +49,53 @@ export default function Register() {
               />
             </Col>
             <SizeBox height={20} />
-            <h3>Personal Data</h3>
+            <SizeBox height={20} />
+            <h3>Personal Info</h3>
             <Row>
               <Col>
                 <TextInput
+                  name="firstname"
                   placeholder="Firstname"
                   label="Firstname"
-                  name="firstname"
                 />
               </Col>
               <Col>
                 <TextInput
+                  name="middlename"
                   placeholder="Middlename"
                   label="Middlename"
-                  name="middlename"
                 />
               </Col>
               <Col>
                 <TextInput
+                  name="lastname"
                   placeholder="Lastname"
                   label="Lastname"
-                  name="lastname"
                 />
               </Col>
             </Row>
             <SizeBox height={20} />
-            <Row>
-              <Form.Label>Gender</Form.Label>
-              <Stack direction="horizontal">
-                <Form.Check
-                  type="radio"
-                  name="gender"
-                  value="Male"
-                  label="Male"
-                />
-                <SizeBox width={20} />
-                <Form.Check
-                  type="radio"
-                  name="gender"
-                  value="Female"
-                  label="Female"
-                />
-              </Stack>
-            </Row>
+            <h3>Shop Information</h3>
+            <SizeBox height={10} />
+            <TextInput
+              placeholder="Shop Name"
+              label="Shop Name"
+              name="shopName"
+            />
+            <SizeBox height={10} />
+            <TextInput
+              placeholder="Description"
+              label="Shop Description"
+              name="shopDescription"
+            />
+            <SizeBox height={10} />
+            <TextInput
+              placeholder="Shop Address"
+              label="Shop Address"
+              name="shopAddress"
+            />
             <SizeBox height={20} />
-            <Row>
-              <Col>
-                <TextInput
-                  type="text"
-                  label="Contact Number"
-                  placeholder="09XXXXXXX"
-                  name="contact"
-                />
-              </Col>
-              <Col>
-                <TextInput type="date" label="Birthdate" name="birthdate" />
-              </Col>
-            </Row>
-            <SizeBox height={20} />
-            <TextInput label="Address" placeholder="Address" name="address" />
-            <SizeBox height={20} />
-            <Button onClick={handleClick}>Submit</Button>
+            <Button>Submit</Button>
           </Col>
         </Row>
       </Container>

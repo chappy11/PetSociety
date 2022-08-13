@@ -10,7 +10,7 @@ export default function Header() {
         <S.Brand>Pet Society</S.Brand>
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            Register as : <a href="/createshop">Shop Owner</a>
+            Register as : <a href="/register">Customer</a>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>

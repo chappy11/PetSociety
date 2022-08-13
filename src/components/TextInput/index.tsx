@@ -7,6 +7,7 @@ type Props = {
   placeholder?: string
   onChange?: () => void
   value?: string
+  name: string
 }
 
 export default function TextInput(props: Props) {
