@@ -1,6 +1,4 @@
 import Navigation from './Navigation';
 import SizeBox from './SizeBox';
-export {
-    Navigation,
-    SizeBox,
-}
+import TextInput from "./TextInput"
+export { Navigation, SizeBox, TextInput }
