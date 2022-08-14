@@ -5,7 +5,7 @@ type Props = {
   type?: string
   label?: string
   placeholder?: string
-  onChange?: () => void
+  onChange?: (e:any) => void
   value?: string
   name: string
 }
@@ -17,6 +17,7 @@ export default function TextInput(props: Props) {
       <S.Input
         placeholder={props.placeholder}
         type={props.type}
+        name={props.name}
         onChange={props.onChange}
         value={props.value}
       />

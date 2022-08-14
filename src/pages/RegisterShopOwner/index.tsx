@@ -1,8 +1,57 @@
-import React from "react"
+import React,{useState} from "react"
 import { Container, Col, Row, Button } from "react-bootstrap"
 import { SizeBox, TextInput } from "../../components"
+import swal from 'sweetalert';
 import Header from "./Header"
 export default function RegisterShopOwner() {
+  const [selectedImage,setSelectedImage] = useState(null);
+  const [params,setParams] = useState({
+    username:"",
+    password:"",
+    confirmPassword:"",
+    shopEmail:"",
+    shopDescription:"",
+    firstname:"",
+    middlename:"",
+    lastname:"",
+    address:"",
+    shopName:"",
+    contact:"",
+  });
+
+  const onChange = (e:any) =>{
+    setParams({...params,[e.target.name]:e.target.value});
+  }
+
+
+  const uploadImage = (e:any) =>{
+    setSelectedImage(e.target.files[0]);
+  }
+
+  const handleSubmit = async()=>{
+    const {username,password,confirmPassword,shopEmail,shopDescription,firstname,lastname,middlename,address,shopName} = params;
+    if(!selectedImage){
+      swal("Error","Fillout all fields",'error');
+    }
+    if(username === "" || password === "" || confirmPassword === "" || shopEmail==="" || shopDescription ==="" || firstname==="" || middlename==="" || lastname==="" || address==="" || shopName===""){
+      swal("Error","Fillout all fields","error");
+    } else if(password !== confirmPassword){
+      swal("Error","Password do not match","error");
+    }else{
+        const formdata = new FormData();
+        formdata.append("username",username);
+        formdata.append("password",password);
+        formdata.append("confirmPassword",confirmPassword);
+        formdata.append("shopEmail",shopEmail);
+        formdata.append("shopDescription",shopDescription);
+        formdata.append("firstname",firstname);
+        formdata.append("middlename",middlename);
+        formdata.append("lastname",lastname);
+
+
+    }
+  }
+
   return (
     <>
       <Header />
@@ -10,16 +59,21 @@ export default function RegisterShopOwner() {
       <Container>
         <Row>
           <Col xs={4}>
-            <input type="file" />
+            {selectedImage &&
+               <img src={URL.createObjectURL(selectedImage)} style={{width:"200px",height:"200px"}} alt="Shop Logo"/>
+            }
+           
+            <input type="file" onChange={uploadImage} />
           </Col>
           <Col>
             <h3>Account Info</h3>
             <Col>
               <TextInput
                 type="text"
-                name="email"
+                name="shopEmail"
                 label="Email"
                 placeholder="Email"
+                onChange={onChange}
               />
               <SizeBox height={10} />
             </Col>
@@ -28,6 +82,7 @@ export default function RegisterShopOwner() {
                 placeholder="Username"
                 label="Username"
                 name="username"
+                onChange={onChange}
               />
             </Col>
             <SizeBox height={10} />
@@ -37,6 +92,7 @@ export default function RegisterShopOwner() {
                 type="Password"
                 label="Password"
                 name="password"
+                onChange={onChange}
               />
             </Col>
             <SizeBox height={10} />
@@ -45,7 +101,8 @@ export default function RegisterShopOwner() {
                 placeholder="Confirm Password"
                 type="Password"
                 label="Confirm Password"
-                name="password"
+                name="confirmPassword"
+                onChange={onChange}
               />
             </Col>
             <SizeBox height={20} />
@@ -57,6 +114,7 @@ export default function RegisterShopOwner() {
                   name="firstname"
                   placeholder="Firstname"
                   label="Firstname"
+                  onChange={onChange}
                 />
               </Col>
               <Col>
@@ -64,6 +122,7 @@ export default function RegisterShopOwner() {
                   name="middlename"
                   placeholder="Middlename"
                   label="Middlename"
+                  onChange={onChange}
                 />
               </Col>
               <Col>
@@ -71,9 +130,12 @@ export default function RegisterShopOwner() {
                   name="lastname"
                   placeholder="Lastname"
                   label="Lastname"
+                  onChange={onChange}
                 />
               </Col>
             </Row>
+            <SizeBox height={20}/>
+            <TextInput placeholder="Contact" label="Contact Number" name="contact"/>
             <SizeBox height={20} />
             <h3>Shop Information</h3>
             <SizeBox height={10} />
@@ -81,21 +143,25 @@ export default function RegisterShopOwner() {
               placeholder="Shop Name"
               label="Shop Name"
               name="shopName"
+              onChange={onChange}
             />
             <SizeBox height={10} />
             <TextInput
               placeholder="Description"
               label="Shop Description"
               name="shopDescription"
+              onChange={onChange}
             />
             <SizeBox height={10} />
             <TextInput
               placeholder="Shop Address"
               label="Shop Address"
-              name="shopAddress"
+              name="address"
+              onChange={onChange}
             />
             <SizeBox height={20} />
-            <Button>Submit</Button>
+            <Button onClick={handleSubmit}>Submit</Button>
+            <SizeBox height={20}/>
           </Col>
         </Row>
       </Container>
