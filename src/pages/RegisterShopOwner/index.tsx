@@ -1,6 +1,7 @@
 import React,{useState} from "react"
 import { Container, Col, Row, Button } from "react-bootstrap"
 import { SizeBox, TextInput } from "../../components"
+import {User} from '../../services/User';
 import swal from 'sweetalert';
 import Header from "./Header"
 export default function RegisterShopOwner() {
@@ -29,16 +30,18 @@ export default function RegisterShopOwner() {
   }
 
   const handleSubmit = async()=>{
-    const {username,password,confirmPassword,shopEmail,shopDescription,firstname,lastname,middlename,address,shopName} = params;
+    const {username,password,confirmPassword,shopEmail,shopDescription,firstname,lastname,middlename,address,shopName,contact} = params;
     if(!selectedImage){
       swal("Error","Fillout all fields",'error');
     }
-    if(username === "" || password === "" || confirmPassword === "" || shopEmail==="" || shopDescription ==="" || firstname==="" || middlename==="" || lastname==="" || address==="" || shopName===""){
+    if(username === "" || password === "" || confirmPassword === "" || shopEmail==="" || shopDescription ==="" || firstname==="" || middlename==="" || lastname==="" || address==="" || shopName==="" || contact===""){
       swal("Error","Fillout all fields","error");
     } else if(password !== confirmPassword){
       swal("Error","Password do not match","error");
     }else{
         const formdata = new FormData();
+
+        formdata.append("shopLogo",selectedImage ? selectedImage : "");
         formdata.append("username",username);
         formdata.append("password",password);
         formdata.append("confirmPassword",confirmPassword);
@@ -47,8 +50,28 @@ export default function RegisterShopOwner() {
         formdata.append("firstname",firstname);
         formdata.append("middlename",middlename);
         formdata.append("lastname",lastname);
+        formdata.append("address",address);
+        formdata.append("contact",contact);
+        formdata.append("shopName",shopName);
 
+        try{
 
+          const res = await User.createShop(formdata);
+
+          if(res?.data.status == 1){
+            swal("Success",res?.data.message,"success").then((value)=>{
+              if(value){
+                window.location.replace("http://localhost:3000/login");
+              }
+            })
+          }else{
+            swal(res?.data.message);
+          }
+          
+          
+        }catch(e){
+          swal("Error","Something went wrong","error");
+        }
     }
   }
 
@@ -135,7 +158,7 @@ export default function RegisterShopOwner() {
               </Col>
             </Row>
             <SizeBox height={20}/>
-            <TextInput placeholder="Contact" label="Contact Number" name="contact"/>
+            <TextInput placeholder="Contact" label="Contact Number" name="contact" onChange={onChange}/>
             <SizeBox height={20} />
             <h3>Shop Information</h3>
             <SizeBox height={10} />

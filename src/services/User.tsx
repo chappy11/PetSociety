@@ -1,12 +1,25 @@
 import axios from "axios"
+import { isAsyncFunction } from "util/types";
 import {BaseUrl} from './BaseUrl';
 
 const url = `${BaseUrl}user/`;
 
 export const User = {
    
-    login:()=>{
-        axios.post(url+"login");       
+    login:async(payload:{username:string,password:string})=>{
+        try{
+            const headers = {
+                "Content-Type":"text/plain"
+            }
+
+            const data = await axios.post(url+"login",payload,{headers});
+
+            return data;
+
+        }catch(e){
+            console.log(e);
+        }
+            
     },
     
     registerCustomer:async(formdata:any)=>{
