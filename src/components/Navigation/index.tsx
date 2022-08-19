@@ -1,10 +1,11 @@
 import React, { useEffect,useState } from 'react';
 import SizeBox from '../SizeBox';
+import { BaseUrl } from '../../services/BaseUrl';
 
 import {NavigationLists} from '../../constants/NavigationList'
-
+import { Image,NavDropdown } from 'react-bootstrap';
 import * as S from './style';
-import { KEY,getItem } from '../../utils/storage.utils';
+import { KEY,getItem,remove } from '../../utils/storage.utils';
 
 export default function Navigation(){
   const [user,setUser] = useState<any>(null);
@@ -23,7 +24,10 @@ export default function Navigation(){
     }
   }
 
-  console.log(user);
+  function handleLogout(){
+    remove();
+    window.location.href="/";
+  }
 
     return (
       <S.Container>
@@ -39,9 +43,14 @@ export default function Navigation(){
         
           </S.NavigationList>
           {user ?(
-                 <S.AccountContainer>
-                 <S.Link href="/login">{user?.firstname+" "+user?.lastname}</S.Link>
-               </S.AccountContainer>
+                <S.AccountContainer>
+                   <Image src={BaseUrl+user?.profilePic} thumbnail={true} roundedCircle={true} style={{width:'30px',height:'30px'}}/>
+                  <S.Drop title={user?.firstname+" "+user?.lastname} id="nav-dropdown">
+                      <NavDropdown.Item eventKey="4.3">Settings</NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item eventKey="4.4" onClick={handleLogout}>Logout</NavDropdown.Item>
+                 </S.Drop>
+            </S.AccountContainer>
             ):(
               <S.AccountContainer>
               <S.Link href="/register">Register</S.Link>
@@ -51,6 +60,7 @@ export default function Navigation(){
               <S.Link href="/login">Login</S.Link>
             </S.AccountContainer>
             )}
+            <SizeBox width={20}/>
         </S.Wrapper>
       </S.Container>
     )

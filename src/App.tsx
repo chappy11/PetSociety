@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RegisterShopOwner from "./pages/RegisterShopOwner"
 import Login from "./pages/Login"
 import Shop from "./pages/Shop"
+import Inventory from './pages/Inventory';
 function App() {
   return (
     <Router>
@@ -16,6 +17,7 @@ function App() {
         <Route path="/createshop" element={<RegisterShopOwner />} />
         <Route path="/login" element={<Login />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/inventory" element={<Inventory />} />
       </Routes>
     </Router>
   )

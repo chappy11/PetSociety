@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {color} from '../../themes/Colors';
+import { NavDropdown } from 'react-bootstrap';
 
 export const Container = styled.div`
   background-color: ${color.primary};
@@ -54,4 +55,17 @@ export const Link = styled.a`
 
 export const Text = styled.p`
     color:white;
+`;
+
+export const Drop = styled(NavDropdown)`
+text-decoration: none;
+font-weight: bold;
+color: ${color.white};
+margin: 0px 7px;
+cursor: pointer;
+
+&:hover {
+  font-size: 20px;
+  color: ${color.white};
+}
 `;

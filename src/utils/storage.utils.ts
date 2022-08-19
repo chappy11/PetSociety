@@ -17,3 +17,7 @@ export const getItem = async(key:string) =>{
         return null;
     
 }
+
+export const remove = ()=>{
+    localStorage.clear();
+}

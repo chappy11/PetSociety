@@ -1,8 +1,9 @@
 import React from 'react';
-import {Row,Col,Container} from 'react-bootstrap'
-import {CardItem,SizeBox} from '../../../components'
+import {Row,Container,Col} from 'react-bootstrap'
+import {CardItem,SizeBox,} from '../../../components'
 import Pet from '../../../asset/pets.png';
 import * as S from './style';
+import { CardGroup } from 'react-bootstrap';
 export default function Product(){
     const item = [{
         name:"gg",
@@ -31,17 +32,16 @@ export default function Product(){
 ]
 
 return(
-    <Container >
-      
-        <Row >
-      
+    <Container>
+         <Row xs={5} md={2} className="g-4 align-items-center">
             {item.map((val)=>(
-                <S.Column >
+                
                  <CardItem img={Pet} name={val.name} price={val.price}/>
-                </S.Column>
+                 
             ))}
-        </Row>
-      
-    </Container>
-)
+     
+                </Row>
+   </Container>
+   
+      )
 }

@@ -10,7 +10,7 @@ export default function CardItem(props:Props){
     const {name,price,img} = props;
 
     return(
-        <Card  style={{ width: '18rem' }}>
+        <Card  style={{ width: '15em',marginLeft:'10px',marginRight:'10px' }}>
             <Card.Img variant='top' src={img} alt={'item image'} />
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
