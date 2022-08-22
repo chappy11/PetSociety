@@ -8,6 +8,7 @@ import RegisterShopOwner from "./pages/RegisterShopOwner"
 import Login from "./pages/Login"
 import Shop from "./pages/Shop"
 import Inventory from './pages/Inventory';
+import AddInventory from './pages/Inventory/AddInventory';
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/inventory" element={<Inventory />} />
+        <Route path="/additem" element={<AddInventory/>}/>
       </Routes>
     </Router>
   )
